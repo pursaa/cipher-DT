@@ -1,0 +1,238 @@
+<!doctype>
+<html>
+	<body>
+		so this is what I would do.
+
+		<script>
+			//first we make the prompt and store it in a variable
+
+			var str = window.prompt('add your sentence');
+
+			//then we check if that works
+			//so far it works but lets check that it stored the variable by console.log
+
+			console.log(str);
+
+			//if you saw I inspected the page and looked in the console tab and it worked!
+
+			//next we find the first letter and last letter to uppercase
+			//lets first test that we can do this before making a function
+
+			var first = str.charAt(0).toUpperCase();
+
+			//now we console.log it
+
+			//it worked because we can see the R
+			//now to get the last letter
+
+			var last = str.charAt(str.length -1).toUpperCase();
+
+			// to get the last of anything you just find the length -1 for example "apple"
+
+			// var apple = 'apple';
+			// console.log(apple.length);
+			// console.log(apple.length -1);
+
+			//it returns a number we can use that to get the position of the letter
+			// console.log(apple.charAt(apple.length -1));
+
+			//see it returned "e" from apple
+
+			//anyways lets get back to the lesson lets console.log the variable last
+			// console.log(last);
+
+			//it worked it got the last letter and capitalized it E
+
+			//ok now we can write our function
+
+			//str would be the parameter that you get from the prompt
+			var makeUpper = function(str){
+				//get first letter 
+				var first = str.charAt(0).toUpperCase();
+				//get last letter
+				var last = str.charAt(str.length -1).toUpperCase();
+				//put them togeter
+				var newStr = first + last;
+				//return the results
+				return newStr;
+			};
+
+			//lets test this by calling the function
+
+			var newStr = makeUpper(str);
+
+
+			//sorry I forgot to put the function in a variable and then console.log it
+
+			// console.log(newStr);
+
+			//see it worked it consoled RE
+
+			//does this make sense what I'm doing? I'm making small tests as we go making sure it works by console.log
+
+			//ok next we take our results and reverse it
+			//how do we do that?
+			//I guess we could just move the position around
+
+			// var reverseStr = newStr.charAt(newStr.length -1) + newStr.charAt(0);
+			// console.log(reverseStr);
+
+			//it worked so lets make that function
+
+			var makeBackwards = function(newStr){
+				//change the order of the letters
+				var reverseStr = newStr.charAt(newStr.length -1) + newStr.charAt(0);
+				//return the results
+				return reverseStr;
+			};
+
+			//ok lets test this function
+
+			// var test = makeBackwards(newStr);
+			// console.log(test);
+
+			//did you see that error message?
+			//it told me reversStr is not defined. Thats usually a clue where to look if your code isn't working. check the console. I miss spelled reverseStr;
+
+			//so it worked!
+			//whats next
+			//ok now we just create a new function that calls the ones we made
+
+			var callTheFunctions = function(str){
+				//call the first function
+				//the first function take the parameter as its argument
+				var first = makeUpper(str);
+
+				//call the second function
+				//the second function will take the results from the first function that is stored in a variable "first"
+				var second = makeBackwards(first);
+
+				//add second to the end of the str
+				var newStr = str + second;
+
+				// console.log(newStr);
+
+				//return the results
+				return newStr;
+			};
+
+			var letters = callTheFunctions(str);
+			console.log('this is letters');
+			console.log(letters);
+
+			//ok lets test it!!!
+			// callTheFunctions(str);
+
+			//oops forgot to console.log it
+			//ok it worked
+			//next we add to our function by adding the results to the end of the original sentence
+
+			//I actually don't remember this method so I'll look it up
+			//I found he concat() method but thinking about it I could just add it together
+
+			//yay it worked!
+			//did you see that!
+
+			//ok lets break this last function into pieces
+			//step 1 get the original str length and divide by 2
+
+			//it outputted 6.5 but is that correct?
+			//lets check
+
+			// var count = str.length;
+			// console.log('this is the length of the string')
+			// console.log(count);
+
+			// count = count/2;
+			// console.log('this is the length divided by 2');
+			// console.log(count);
+
+			//looks correct to me
+			//ok now we need to round down
+			//I don't remember that so lets look that up
+			//I found the .floor() method that rounds down
+			//lets try that
+
+			// console.log('this is rounded down');
+			// count = Math.floor(count);
+
+
+			//I just made a test to see what letter that would be
+			//so str.charAt(count) returns "i";
+			// console.log(str.charAt(count));
+
+
+			//looks like I screwed up
+			//lets take a closer look at that method
+			//ok I did that wrong
+			//looks like I have to add the number as a arguement
+			//forgot to console it again
+
+			//ok it rounded down to 6 perfect!
+			//lets make that function
+			//ok we need to select the letter at the position of 6
+
+			//ok the last step is easy just put the letter at the beginning
+
+			var roundDown = function(str1, str2){
+				var count = str.length;
+				count = count/2;
+				count = Math.floor(count);
+				var letter = str.charAt(count);
+				var newStr = letter + str2;
+
+				console.log(newStr);
+				//return the results
+				return newStr;
+			};
+
+			//lets test this by call this function
+			var finalStr = roundDown(str, letters);
+
+			//well that didn't work
+			//what happened?
+			//nevermind I'm stupid
+			//we should just store the 3rd function in a variable then pass it to the 4th
+
+			//lets that instead
+			//damn it that didn't work!
+
+			//ok I got it to work
+			//did you see what I did
+			//I console.log my variables to make sure what was working and what was not working
+
+			//so it turns out in the roundDown function I needed 2 arguements 
+			//I needed the original text in the variable str
+			// and I need the modified text with the capital letters at the end stored in the variable letters
+
+			//the reason I couldn't see it in the console was because I was tring to console.log newstr instead of newStr
+
+			//yay we did it
+
+
+			//the bonus does requre making it to an array because doing it the other way is a long way to do it
+
+			//this is how I would do it
+			//first store the results from the 4th function in a variable
+
+			//make it into a variable
+			finalStr = finalStr.split('');
+
+			//next use the reverse() for arrays
+
+			finalStr = finalStr.reverse();
+
+			//last turn the array back into a string
+			//I don't remember what that is so lets look it up
+			//I found the join() and toString() method
+			//I'm sure they both work but I'm going to use the .join()
+
+			finalStr = finalStr.join('');
+			console.log(finalStr);
+
+
+		</script>
+
+
+	</body>
+</html>
